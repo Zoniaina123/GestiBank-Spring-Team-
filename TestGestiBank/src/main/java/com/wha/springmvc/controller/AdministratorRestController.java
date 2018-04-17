@@ -5,7 +5,9 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.wha.springmvc.model.Administrator;
-import com.wha.springmvc.model.User;
+import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.service.AdministratorService;
 import com.wha.springmvc.service.ConseillerService;
 import com.wha.springmvc.service.UserService;
@@ -34,7 +36,8 @@ public class AdministratorRestController {
 	// -------------------Retrieve All
 	// Admins--------------------------------------------------------
 
-	@RequestMapping(value = "/administrators/", method = RequestMethod.GET)
+	@RequestMapping(value = "/administrator/", method = RequestMethod.GET)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<Collection<Administrator>> listAllAdmins() {
 
 		Collection<Administrator> admins = administratorService.findAllAdministrators();
@@ -45,11 +48,25 @@ public class AdministratorRestController {
 		}
 		return new ResponseEntity<Collection<Administrator>>(admins, HttpStatus.OK);
 	}
+	
+	 
+    @RequestMapping(value = "/administrator/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Administrator> getAdmin(@PathVariable("id") int id) {
+        System.out.println("Fetching Admin with id " + id);
+        Administrator admin = administratorService.findById(id);
+        if (admin == null) {
+            System.out.println("Conseiller with id " + id + " not found");
+            return new ResponseEntity<Administrator>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Administrator>(admin, HttpStatus.OK);
+    }
 
 	// -------------------Create an
 	// Administrator--------------------------------------------------------
 
 	@RequestMapping(value = "/administrator/", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<Void> createAdministrator(@RequestBody Administrator admin, UriComponentsBuilder ucBuilder) {
 
 		if (administratorService.isUsExist(admin)) {
@@ -68,6 +85,7 @@ public class AdministratorRestController {
 	// --------------------------------------------------------
 
 	@RequestMapping(value = "/administrator/{id}", method = RequestMethod.DELETE)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<Administrator> deleteAdministrator(@PathVariable("id") int id) {
 		System.out.println("Fetching & Deleting Admin with id " + id);
 
@@ -83,7 +101,7 @@ public class AdministratorRestController {
 	
 	
 	 
-    //-------------------Retrieve All Users: les demandes d'inscription--------------------------------------------------------
+   /* //-------------------Retrieve All Users: les demandes d'inscription--------------------------------------------------------
      
     @RequestMapping(value = "/user/", method = RequestMethod.GET)
     public ResponseEntity<Collection<User>> listAllUsers() {
@@ -94,7 +112,7 @@ public class AdministratorRestController {
         return new ResponseEntity<Collection<User>>(users, HttpStatus.OK);
     }
     
-	
+	*/
 	
 	/* //------------------- Update a User : affecter une demande à un conseiller :  --------------------------------------------------------
     
