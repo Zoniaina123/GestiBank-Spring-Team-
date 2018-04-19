@@ -24,11 +24,7 @@ public class Debit extends Operation {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Debit(int numerOperation , Date dateEffet, double montant, String libelle) {
-		super(numerOperation,dateEffet,montant,libelle);
-		
-	
-	}
+
 	
 
 }

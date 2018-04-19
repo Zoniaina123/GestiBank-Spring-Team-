@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,6 +73,7 @@ public class ClientRestController {
 //-------------------Create a Client (avec les demandes d'inscription)--------------------------------------------------------
     
     @RequestMapping(value = "/conseiller/{id}/visitor/{idVisitor}/client/", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> createClient(@PathVariable int id,@PathVariable int idVisitor, @RequestBody Client client,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Client " + client.getUsername() + client.getEmail()+ client.getAddress());
  
@@ -89,6 +91,9 @@ public class ClientRestController {
         client.setEmail(v.getEmail());
         client.setNumTel(v.getNumTel());
         client.setUsername(client.getUsername());
+        client.setNom(client.getNom());
+        client.setNbEnfant(client.getNbEnfant());
+        client.setSituation(client.getSituation());
         client.setPwd(client.getPwd());
         client.setConseiller(conse);
         

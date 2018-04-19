@@ -28,6 +28,12 @@ public class Visitor extends User {
 	}
 
 	public Visitor(int affectation) {
+		/*if (affectation>0) {
+			this.affectation=affectation;
+		}
+		else {
+			this.affectation=0;
+		}*/
 		this.affectation=affectation;
 	}
 

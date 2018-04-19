@@ -68,7 +68,7 @@ public class ConseillerServiceImpl implements ConseillerService {
 
 	@Override
 	public Collection<Conseiller> findAllConseillers() {
-		// TODO Auto-generated method stub
+		
 		return dao.findAllConseillers();
 	}
 

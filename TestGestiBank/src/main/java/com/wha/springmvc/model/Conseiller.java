@@ -43,8 +43,7 @@ public class Conseiller extends User {
 	@JsonIgnore
 	private Administrator administrator;
 	
-	
-	
+
 	
 	
 	
@@ -61,9 +60,10 @@ public class Conseiller extends User {
 		this.dateDebut = dateDebut;
 		this.clients = clients;
 		this.administrator = administrator;
+
 	}
 
-
+	
 
 	public int getMatricule() {
 		return matricule;
@@ -97,7 +97,7 @@ public class Conseiller extends User {
 
 	@Override
 	public String toString() {
-		return "Conseiller [matricule=" + matricule + ", dateDebut=" + dateDebut + ", clients=" + /*clients +*/ "]";
+		return "Conseiller [matricule=" + matricule + ", dateDebut=" + dateDebut + ", admin=" + administrator.getId() + "]";
 	}
 
 	public Administrator getAdministrator() {

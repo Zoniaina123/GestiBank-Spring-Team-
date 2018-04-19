@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ public class CompteRestController {
 	 
 	 //afficher les comptes d'un client
 	 @RequestMapping(value = "/client/{id}/comptes", method = RequestMethod.GET) //ok
+	 @CrossOrigin(origins = "http://localhost:4200")
 		public    List<Compte>   trouverComptesClient(@PathVariable int id) {
 	       List<Compte>  listComptes =compteService.findComptesClient(id);
 		return listComptes;

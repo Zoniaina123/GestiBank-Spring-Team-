@@ -26,7 +26,6 @@ public class ConseillerDaoImpl extends AbstractDao<Integer, Conseiller> implemen
 		} catch (NoResultException ex) {
 			return null;
 		}
-	
 	}
 
 	@Override
@@ -46,7 +45,8 @@ public class ConseillerDaoImpl extends AbstractDao<Integer, Conseiller> implemen
 	@Override
 	public Collection<Conseiller> findAllConseillers() {
 		
-		Collection<Conseiller> conseiller = getEntityManager().createQuery("SELECT c FROM Conseiller c ORDER BY c.username ASC").getResultList();				
+		Collection<Conseiller> conseiller = getEntityManager().createQuery("SELECT c FROM Conseiller c ORDER BY c.username ASC").getResultList();	
+		//System.out.println(conseiller);
 		return conseiller;
 	}
 

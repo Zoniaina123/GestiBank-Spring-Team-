@@ -2,19 +2,19 @@ package com.wha.springmvc.model;
 
 public class Auth {
 	
-	private String user;
+	private String userU;
 	private String pwd;
 
 	public Auth() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getUser() {
-		return user;
+		return userU;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUser(String userU) {
+		this.userU = userU;
 	}
 
 	public String getPwd() {

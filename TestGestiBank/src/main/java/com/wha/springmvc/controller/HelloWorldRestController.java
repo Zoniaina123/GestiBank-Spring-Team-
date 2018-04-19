@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,9 +97,11 @@ public class HelloWorldRestController {
     //------------------- login Users --------------------------------------------------------
      
     @RequestMapping(value = "/login/user/", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:4200")
     public  ResponseEntity<User> getUserLogin(@RequestBody Auth auth ) {
         System.out.println("Bonjour " + auth.getUser());
         User user = userService.isValidUser(auth.getUser(), auth.getPwd());
+        
         if (user == null) {
             System.out.println("User with username " + auth.getUser() + " not found");
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
