@@ -42,13 +42,16 @@ public class ClientRestController {
 	
 	 //-------------------Retrieve All Clients --------------------------------------------------------
     
-    @RequestMapping(value = "/clients/", method = RequestMethod.GET)
-    public ResponseEntity<Collection<Client>> listAllClients() {
-        Collection<Client> clients = clientService.findAllClients();
-        if(clients.isEmpty()){
+    @RequestMapping(value = "conseiller/{id}/clients/", method = RequestMethod.GET)
+    public ResponseEntity<Collection<Client>> listAllClients(@PathVariable("id") int id) {
+    	Conseiller cons = conseillerService.findById(id);
+    	
+    	Collection<Client> cli = cons.getClients();
+    	
+        if(cli.isEmpty()){
             return new ResponseEntity<Collection<Client>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<Collection<Client>>(clients, HttpStatus.OK);
+        return new ResponseEntity<Collection<Client>>(cli, HttpStatus.OK);
     }
     
     
